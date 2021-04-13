@@ -1,7 +1,7 @@
 const util = require('./util/util');
 
 //生产环境 Master or Dev
-global.PRO_ENV = 'Master';
+global.PRO_ENV = 'Dev';
 
 //服务器配置获取
 var argv = process.argv;

@@ -31,7 +31,6 @@ app.listen(SERVER_PORT, () => {
 
 global.center_mgr = require('../common/socket/center_mgr')();
 global.rpc_router = require('./rpc/rpc_router')();
-global.logic_mgr = require('./logic/logic_mgr')();
 
 global.heatbeat_mgr = require("./socket/heatbeat_mgr")();
 global.socket_mgr = require("./socket/socket_mgr")();

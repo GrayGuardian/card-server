@@ -56,19 +56,9 @@ RouterMgr.prototype.nextArea = async function (ctx, next) {
         ctx.method.genError(ERROR_CODE.AREA_MAINTENANCE);
         return;
     }
-    let rows;
-    rows = await mysql.queryAsync('SELECT * FROM player_info WHERE aid = ? AND uid = ?', [aid, ctx.user.uid]);
-    if (rows.length == 0) {
-        ctx.method.genError(ERROR_CODE.UNKNOWN_ERROR);
-        return;
-    }
-    let players = JSON.parse(JSON.stringify(rows));
+    let rows = await mysql.queryAsync('SELECT * FROM player_info WHERE aid = ? AND uid = ?', [aid, ctx.user.uid]);
 
-    rows = await mysql.queryAsync('UPDATE user_info SET aid = ? WHERE uid = ?', [aid, ctx.user.uid]);
-    if (rows.length == 0) {
-        ctx.method.genError(ERROR_CODE.UNKNOWN_ERROR);
-        return;
-    }
+    let players = JSON.parse(JSON.stringify(rows));
 
     let token = util.token.encrypt({ uid: ctx.user.uid, aid: aid });
     ctx.response.body = { token: token, players: players };

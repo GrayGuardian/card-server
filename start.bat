@@ -1,6 +1,6 @@
 @echo off
 ::添加Server配置项并修改长度变量
-SET SERVER_CONFIG_Length=6
+SET SERVER_CONFIG_Length=5
 SET SERVER_CONFIG[0].Type=center-server
 SET SERVER_CONFIG[0].Count=1
 SET SERVER_CONFIG[1].Type=http-server
