@@ -1,0 +1,49 @@
+syntax = "proto2";
+package socket;
+
+import "common.proto";
+message kick {
+    required common.Error error = 1;
+}
+message conn {
+    required string token = 1;
+}
+message connRet { }
+
+message heartBeat { }
+message heartBeatRet { 
+    required int32 now = 1;
+}
+
+message upModelData {
+    required string name = 1;
+
+    optional common.PlayerInfo Player = 10;
+    optional common.PlayerCurrencyInfo PlayerCurrency = 11;
+}
+
+message enterGame { }
+message enterGameRet { }
+
+message c2s {
+    required string router = 1;
+
+    optional conn conn = 100;
+    optional heartBeat heartBeat = 101;
+
+    optional enterGame enterGame = 200;
+}
+
+message s2c {
+    required string router = 1;
+
+    optional common.Error error = 50;
+    optional kick kick = 51;
+    optional upModelData upModelData = 52;
+
+    optional connRet connRet = 100;
+    optional heartBeatRet heartBeatRet = 101;
+
+    optional enterGameRet enterGameRet = 200;
+}
+

@@ -1,0 +1,249 @@
+{
+  "nested": {
+    "socket": {
+      "nested": {
+        "kick": {
+          "fields": {
+            "error": {
+              "rule": "required",
+              "type": "common.Error",
+              "id": 1
+            }
+          }
+        },
+        "conn": {
+          "fields": {
+            "token": {
+              "rule": "required",
+              "type": "string",
+              "id": 1
+            }
+          }
+        },
+        "connRet": {
+          "fields": {}
+        },
+        "heartBeat": {
+          "fields": {}
+        },
+        "heartBeatRet": {
+          "fields": {
+            "now": {
+              "rule": "required",
+              "type": "int32",
+              "id": 1
+            }
+          }
+        },
+        "upModelData": {
+          "fields": {
+            "name": {
+              "rule": "required",
+              "type": "string",
+              "id": 1
+            },
+            "Player": {
+              "type": "common.PlayerInfo",
+              "id": 10
+            },
+            "PlayerCurrency": {
+              "type": "common.PlayerCurrencyInfo",
+              "id": 11
+            }
+          }
+        },
+        "enterGame": {
+          "fields": {}
+        },
+        "enterGameRet": {
+          "fields": {}
+        },
+        "c2s": {
+          "fields": {
+            "router": {
+              "rule": "required",
+              "type": "string",
+              "id": 1
+            },
+            "conn": {
+              "type": "conn",
+              "id": 100
+            },
+            "heartBeat": {
+              "type": "heartBeat",
+              "id": 101
+            },
+            "enterGame": {
+              "type": "enterGame",
+              "id": 200
+            }
+          }
+        },
+        "s2c": {
+          "fields": {
+            "router": {
+              "rule": "required",
+              "type": "string",
+              "id": 1
+            },
+            "error": {
+              "type": "common.Error",
+              "id": 50
+            },
+            "kick": {
+              "type": "kick",
+              "id": 51
+            },
+            "upModelData": {
+              "type": "upModelData",
+              "id": 52
+            },
+            "connRet": {
+              "type": "connRet",
+              "id": 100
+            },
+            "heartBeatRet": {
+              "type": "heartBeatRet",
+              "id": 101
+            },
+            "enterGameRet": {
+              "type": "enterGameRet",
+              "id": 200
+            }
+          }
+        }
+      }
+    },
+    "common": {
+      "nested": {
+        "Error": {
+          "fields": {
+            "code": {
+              "rule": "required",
+              "type": "int32",
+              "id": 1
+            },
+            "msg": {
+              "rule": "required",
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
+        "UserInfo": {
+          "fields": {
+            "uid": {
+              "rule": "required",
+              "type": "int32",
+              "id": 1
+            },
+            "username": {
+              "rule": "required",
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
+        "AreaInfo": {
+          "fields": {
+            "aid": {
+              "rule": "required",
+              "type": "int32",
+              "id": 1
+            },
+            "name": {
+              "rule": "required",
+              "type": "string",
+              "id": 2
+            },
+            "ismaintenance": {
+              "rule": "required",
+              "type": "int32",
+              "id": 3
+            }
+          }
+        },
+        "PlayerInfo": {
+          "fields": {
+            "pid": {
+              "rule": "required",
+              "type": "int32",
+              "id": 1
+            },
+            "uid": {
+              "rule": "required",
+              "type": "int32",
+              "id": 2
+            },
+            "aid": {
+              "rule": "required",
+              "type": "int32",
+              "id": 3
+            },
+            "name": {
+              "rule": "required",
+              "type": "string",
+              "id": 4
+            },
+            "lv": {
+              "rule": "required",
+              "type": "int32",
+              "id": 5
+            },
+            "exp": {
+              "rule": "required",
+              "type": "int32",
+              "id": 6
+            },
+            "phone": {
+              "type": "string",
+              "id": 7
+            },
+            "createTime": {
+              "rule": "required",
+              "type": "int32",
+              "id": 8
+            },
+            "loginTime": {
+              "type": "int32",
+              "id": 9
+            },
+            "logoutTime": {
+              "type": "int32",
+              "id": 10
+            },
+            "online": {
+              "rule": "required",
+              "type": "int32",
+              "id": 11
+            }
+          }
+        },
+        "PlayerCurrencyInfo": {
+          "fields": {
+            "pid": {
+              "rule": "required",
+              "type": "int32",
+              "id": 1
+            },
+            "gold1": {
+              "rule": "required",
+              "type": "int32",
+              "id": 2
+            },
+            "gold2": {
+              "rule": "required",
+              "type": "int32",
+              "id": 3
+            },
+            "gold3": {
+              "rule": "required",
+              "type": "int32",
+              "id": 4
+            }
+          }
+        }
+      }
+    }
+  }
+}

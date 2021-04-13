@@ -1,0 +1,57 @@
+syntax = "proto2";
+package http;
+
+import "common.proto";
+
+message login {
+    required string username = 1;
+    required string password = 2;
+}
+message loginRet {
+    required string token = 1;
+    required common.UserInfo info = 2;
+    required common.AreaInfo area = 3;
+    repeated common.AreaInfo areas = 4;
+}
+message register {
+    required string username = 1;
+    required string password = 2;
+    required string password1 = 3;
+}
+message registerRet {
+    required string token = 1;
+    required common.UserInfo info = 2;
+}
+message nextArea {
+    required int32 aid = 1;
+}
+message nextAreaRet { 
+    required string token = 1;
+    repeated common.PlayerInfo players = 2;
+}
+message enterGame { 
+    required int32 pid = 1;
+}
+message enterGameRet { 
+    required string token = 1;
+    required string url = 2;
+}
+message http_c2s {
+    required string router = 1;
+
+    optional login login = 100;
+    optional register register = 101;
+    optional nextArea nextArea = 102;
+    optional enterGame enterGame = 103;
+}
+
+message http_s2c {
+    required string router = 1;
+
+    optional common.Error error = 50;
+
+    optional loginRet loginRet = 100;
+    optional registerRet registerRet = 101;
+    optional nextAreaRet nextAreaRet = 102;
+    optional enterGameRet enterGameRet = 103;
+}

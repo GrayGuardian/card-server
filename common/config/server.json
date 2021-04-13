@@ -1,0 +1,66 @@
+{
+    "Master": {
+        "web-server": [
+            {
+                "ip": "192.168.74.1",
+                "port": 80
+            }
+        ],
+        "http-server": [
+            {
+                "ip": "192.168.74.1",
+                "port": 300
+            }
+        ],
+        "center-server": [
+            {
+                "ip": "192.168.74.1",
+                "port": 500
+            }
+        ],
+        "connect-server": [
+            {
+                "ip": "192.168.74.1",
+                "port": 600
+            }
+        ],
+        "game-server": [
+            {
+                "ip": "192.168.74.1",
+                "port": 700
+            }
+        ]
+    },
+    "Dev": {
+        "web-server": [
+            {
+                "ip": "127.0.0.1",
+                "port": 80
+            }
+        ],
+        "http-server": [
+            {
+                "ip": "127.0.0.1",
+                "port": 300
+            }
+        ],
+        "center-server": [
+            {
+                "ip": "127.0.0.1",
+                "port": 500
+            }
+        ],
+        "connect-server": [
+            {
+                "ip": "127.0.0.1",
+                "port": 600
+            }
+        ],
+        "game-server": [
+            {
+                "ip": "127.0.0.1",
+                "port": 700
+            }
+        ]
+    }
+}

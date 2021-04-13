@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Test</title>
+  <script typet="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+  <script src="//cdn.rawgit.com/dcodeIO/protobuf.js/6.8.8/dist/protobuf.js"></script>
+  <script type="text/javascript">
+
+    function con() {
+      $.post("http://localhost:300/user/register", { username: 123, password: 123, password1: 123 }, (result) => {
+        console.log(result);
+      });
+
+    }
+
+  </script>
+</head>
+
+<body>
+  <div class="g-doc">
+
+    <div class="g-button">
+      <input id="test" type="button" value="连接" onclick="con()" />
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,135 @@
+{
+  "nested": {
+    "common": {
+      "nested": {
+        "Error": {
+          "fields": {
+            "code": {
+              "rule": "required",
+              "type": "int32",
+              "id": 1
+            },
+            "msg": {
+              "rule": "required",
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
+        "UserInfo": {
+          "fields": {
+            "uid": {
+              "rule": "required",
+              "type": "int32",
+              "id": 1
+            },
+            "username": {
+              "rule": "required",
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
+        "AreaInfo": {
+          "fields": {
+            "aid": {
+              "rule": "required",
+              "type": "int32",
+              "id": 1
+            },
+            "name": {
+              "rule": "required",
+              "type": "string",
+              "id": 2
+            },
+            "ismaintenance": {
+              "rule": "required",
+              "type": "int32",
+              "id": 3
+            }
+          }
+        },
+        "PlayerInfo": {
+          "fields": {
+            "pid": {
+              "rule": "required",
+              "type": "int32",
+              "id": 1
+            },
+            "uid": {
+              "rule": "required",
+              "type": "int32",
+              "id": 2
+            },
+            "aid": {
+              "rule": "required",
+              "type": "int32",
+              "id": 3
+            },
+            "name": {
+              "rule": "required",
+              "type": "string",
+              "id": 4
+            },
+            "lv": {
+              "rule": "required",
+              "type": "int32",
+              "id": 5
+            },
+            "exp": {
+              "rule": "required",
+              "type": "int32",
+              "id": 6
+            },
+            "phone": {
+              "type": "string",
+              "id": 7
+            },
+            "createTime": {
+              "rule": "required",
+              "type": "int32",
+              "id": 8
+            },
+            "loginTime": {
+              "type": "int32",
+              "id": 9
+            },
+            "logoutTime": {
+              "type": "int32",
+              "id": 10
+            },
+            "online": {
+              "rule": "required",
+              "type": "int32",
+              "id": 11
+            }
+          }
+        },
+        "PlayerCurrencyInfo": {
+          "fields": {
+            "pid": {
+              "rule": "required",
+              "type": "int32",
+              "id": 1
+            },
+            "gold1": {
+              "rule": "required",
+              "type": "int32",
+              "id": 2
+            },
+            "gold2": {
+              "rule": "required",
+              "type": "int32",
+              "id": 3
+            },
+            "gold3": {
+              "rule": "required",
+              "type": "int32",
+              "id": 4
+            }
+          }
+        }
+      }
+    }
+  }
+}

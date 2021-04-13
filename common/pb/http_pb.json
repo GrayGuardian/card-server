@@ -1,0 +1,310 @@
+{
+  "nested": {
+    "http": {
+      "nested": {
+        "login": {
+          "fields": {
+            "username": {
+              "rule": "required",
+              "type": "string",
+              "id": 1
+            },
+            "password": {
+              "rule": "required",
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
+        "loginRet": {
+          "fields": {
+            "token": {
+              "rule": "required",
+              "type": "string",
+              "id": 1
+            },
+            "info": {
+              "rule": "required",
+              "type": "common.UserInfo",
+              "id": 2
+            },
+            "area": {
+              "rule": "required",
+              "type": "common.AreaInfo",
+              "id": 3
+            },
+            "areas": {
+              "rule": "repeated",
+              "type": "common.AreaInfo",
+              "id": 4
+            }
+          }
+        },
+        "register": {
+          "fields": {
+            "username": {
+              "rule": "required",
+              "type": "string",
+              "id": 1
+            },
+            "password": {
+              "rule": "required",
+              "type": "string",
+              "id": 2
+            },
+            "password1": {
+              "rule": "required",
+              "type": "string",
+              "id": 3
+            }
+          }
+        },
+        "registerRet": {
+          "fields": {
+            "token": {
+              "rule": "required",
+              "type": "string",
+              "id": 1
+            },
+            "info": {
+              "rule": "required",
+              "type": "common.UserInfo",
+              "id": 2
+            }
+          }
+        },
+        "nextArea": {
+          "fields": {
+            "aid": {
+              "rule": "required",
+              "type": "int32",
+              "id": 1
+            }
+          }
+        },
+        "nextAreaRet": {
+          "fields": {
+            "token": {
+              "rule": "required",
+              "type": "string",
+              "id": 1
+            },
+            "players": {
+              "rule": "repeated",
+              "type": "common.PlayerInfo",
+              "id": 2
+            }
+          }
+        },
+        "enterGame": {
+          "fields": {
+            "pid": {
+              "rule": "required",
+              "type": "int32",
+              "id": 1
+            }
+          }
+        },
+        "enterGameRet": {
+          "fields": {
+            "token": {
+              "rule": "required",
+              "type": "string",
+              "id": 1
+            },
+            "url": {
+              "rule": "required",
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
+        "http_c2s": {
+          "fields": {
+            "router": {
+              "rule": "required",
+              "type": "string",
+              "id": 1
+            },
+            "login": {
+              "type": "login",
+              "id": 100
+            },
+            "register": {
+              "type": "register",
+              "id": 101
+            },
+            "nextArea": {
+              "type": "nextArea",
+              "id": 102
+            },
+            "enterGame": {
+              "type": "enterGame",
+              "id": 103
+            }
+          }
+        },
+        "http_s2c": {
+          "fields": {
+            "router": {
+              "rule": "required",
+              "type": "string",
+              "id": 1
+            },
+            "error": {
+              "type": "common.Error",
+              "id": 50
+            },
+            "loginRet": {
+              "type": "loginRet",
+              "id": 100
+            },
+            "registerRet": {
+              "type": "registerRet",
+              "id": 101
+            },
+            "nextAreaRet": {
+              "type": "nextAreaRet",
+              "id": 102
+            },
+            "enterGameRet": {
+              "type": "enterGameRet",
+              "id": 103
+            }
+          }
+        }
+      }
+    },
+    "common": {
+      "nested": {
+        "Error": {
+          "fields": {
+            "code": {
+              "rule": "required",
+              "type": "int32",
+              "id": 1
+            },
+            "msg": {
+              "rule": "required",
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
+        "UserInfo": {
+          "fields": {
+            "uid": {
+              "rule": "required",
+              "type": "int32",
+              "id": 1
+            },
+            "username": {
+              "rule": "required",
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
+        "AreaInfo": {
+          "fields": {
+            "aid": {
+              "rule": "required",
+              "type": "int32",
+              "id": 1
+            },
+            "name": {
+              "rule": "required",
+              "type": "string",
+              "id": 2
+            },
+            "ismaintenance": {
+              "rule": "required",
+              "type": "int32",
+              "id": 3
+            }
+          }
+        },
+        "PlayerInfo": {
+          "fields": {
+            "pid": {
+              "rule": "required",
+              "type": "int32",
+              "id": 1
+            },
+            "uid": {
+              "rule": "required",
+              "type": "int32",
+              "id": 2
+            },
+            "aid": {
+              "rule": "required",
+              "type": "int32",
+              "id": 3
+            },
+            "name": {
+              "rule": "required",
+              "type": "string",
+              "id": 4
+            },
+            "lv": {
+              "rule": "required",
+              "type": "int32",
+              "id": 5
+            },
+            "exp": {
+              "rule": "required",
+              "type": "int32",
+              "id": 6
+            },
+            "phone": {
+              "type": "string",
+              "id": 7
+            },
+            "createTime": {
+              "rule": "required",
+              "type": "int32",
+              "id": 8
+            },
+            "loginTime": {
+              "type": "int32",
+              "id": 9
+            },
+            "logoutTime": {
+              "type": "int32",
+              "id": 10
+            },
+            "online": {
+              "rule": "required",
+              "type": "int32",
+              "id": 11
+            }
+          }
+        },
+        "PlayerCurrencyInfo": {
+          "fields": {
+            "pid": {
+              "rule": "required",
+              "type": "int32",
+              "id": 1
+            },
+            "gold1": {
+              "rule": "required",
+              "type": "int32",
+              "id": 2
+            },
+            "gold2": {
+              "rule": "required",
+              "type": "int32",
+              "id": 3
+            },
+            "gold3": {
+              "rule": "required",
+              "type": "int32",
+              "id": 4
+            }
+          }
+        }
+      }
+    }
+  }
+}
