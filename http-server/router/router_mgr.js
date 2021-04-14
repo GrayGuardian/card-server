@@ -56,7 +56,7 @@ RouterMgr.prototype.nextArea = async function (ctx, next) {
         ctx.method.genError(ERROR_CODE.AREA_MAINTENANCE);
         return;
     }
-    let rows = await mysql.queryAsync('SELECT * FROM player_info WHERE aid = ? AND uid = ?', [aid, ctx.user.uid]);
+    let rows = await mysql.queryAsync('SELECT * FROM player_info WHERE aid = ? AND uid = ? AND type = 0', [aid, ctx.user.uid]);
 
     let players = JSON.parse(JSON.stringify(rows));
 

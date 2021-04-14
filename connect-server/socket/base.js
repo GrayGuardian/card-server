@@ -37,11 +37,7 @@ module.exports = function (prototype) {
         //console.log("disconnect");
         let player = await rpc_mgr.getPlayer(ctx.socket.pid);
 
-        let nowPos = await rpc_mgr.getPlayerPos(player);
-        await rpc_mgr.playerOut(player, nowPos.mid);
-
         player.set_online(0)
-        player.set_pos(nowPos);
         await player.upDataToDB(true);
 
         await rpc_mgr.setPlayer(player);

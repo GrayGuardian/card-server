@@ -19,14 +19,15 @@ message PlayerInfo {
     required int32 pid = 1;
     required int32 uid = 2;
     required int32 aid = 3;
-    required string name = 4;
-    required int32 lv = 5;
-    required int32 exp = 6;
-    optional string phone = 7;
-    required int32 createTime = 8;
-    optional int32 loginTime = 9;
-    optional int32 logoutTime = 10;
-    required int32 online = 11;
+    required int32 avatarid = 4;
+    required string name = 5;
+    required int32 lv = 6;
+    required int32 exp = 7;
+    optional string phone = 8;
+    required int32 createTime = 9;
+    optional int32 loginTime = 10;
+    optional int32 logoutTime = 11;
+    required int32 online = 12;
 }
 message PlayerCurrencyInfo {
     required int32 pid = 1;
