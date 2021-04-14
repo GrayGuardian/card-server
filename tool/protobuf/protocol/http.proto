@@ -25,6 +25,19 @@ message registerRet {
 message nextArea {
     required int32 aid = 1;
 }
+message createPlayer {
+    required string name = 1;
+    required int32 avatarid = 2;
+}
+message createPlayerRet { 
+    repeated common.PlayerInfo info = 1;
+}
+message delPlayer {
+    required int32 pid = 1;
+}
+message delPlayerRet { 
+    required int32 pid = 1;
+}
 message nextAreaRet { 
     required string token = 1;
     repeated common.PlayerInfo players = 2;
@@ -42,7 +55,9 @@ message http_c2s {
     optional login login = 100;
     optional register register = 101;
     optional nextArea nextArea = 102;
-    optional enterGame enterGame = 103;
+    optional createPlayer createPlayer = 103;
+    optional delPlayer delPlayer = 104;
+    optional enterGame enterGame = 105;
 }
 
 message http_s2c {
@@ -53,5 +68,7 @@ message http_s2c {
     optional loginRet loginRet = 100;
     optional registerRet registerRet = 101;
     optional nextAreaRet nextAreaRet = 102;
-    optional enterGameRet enterGameRet = 103;
+    optional createPlayerRet createPlayerRet = 103;
+    optional delPlayerRet delPlayerRet = 104;
+    optional enterGameRet enterGameRet = 105;
 }

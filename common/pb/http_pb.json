@@ -82,6 +82,47 @@
             }
           }
         },
+        "createPlayer": {
+          "fields": {
+            "name": {
+              "rule": "required",
+              "type": "string",
+              "id": 1
+            },
+            "avatarid": {
+              "rule": "required",
+              "type": "int32",
+              "id": 2
+            }
+          }
+        },
+        "createPlayerRet": {
+          "fields": {
+            "info": {
+              "rule": "repeated",
+              "type": "common.PlayerInfo",
+              "id": 1
+            }
+          }
+        },
+        "delPlayer": {
+          "fields": {
+            "pid": {
+              "rule": "required",
+              "type": "int32",
+              "id": 1
+            }
+          }
+        },
+        "delPlayerRet": {
+          "fields": {
+            "pid": {
+              "rule": "required",
+              "type": "int32",
+              "id": 1
+            }
+          }
+        },
         "nextAreaRet": {
           "fields": {
             "token": {
@@ -138,9 +179,17 @@
               "type": "nextArea",
               "id": 102
             },
+            "createPlayer": {
+              "type": "createPlayer",
+              "id": 103
+            },
+            "delPlayer": {
+              "type": "delPlayer",
+              "id": 104
+            },
             "enterGame": {
               "type": "enterGame",
-              "id": 103
+              "id": 105
             }
           }
         },
@@ -167,9 +216,17 @@
               "type": "nextAreaRet",
               "id": 102
             },
+            "createPlayerRet": {
+              "type": "createPlayerRet",
+              "id": 103
+            },
+            "delPlayerRet": {
+              "type": "delPlayerRet",
+              "id": 104
+            },
             "enterGameRet": {
               "type": "enterGameRet",
-              "id": 103
+              "id": 105
             }
           }
         }

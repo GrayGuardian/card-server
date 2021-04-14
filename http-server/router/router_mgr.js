@@ -44,6 +44,24 @@ RouterMgr.prototype.register = async function (ctx, next) {
     ctx.response.body = { info: result, token: token }
     await next();
 }
+RouterMgr.prototype.createPlayer = async function (ctx, next) {
+
+
+}
+RouterMgr.prototype.delPlayer = async function (ctx, next) {
+    let param = ctx.request.body;
+    let pid = param.pid;
+
+    let rows = await mysql.queryAsync('UPDATE player_info SET type = 1,delTime = ? WHERE pid = ? AND type = 0', [Date.unix(), pid]);
+
+    if (rows.length <= 0) {
+        ctx.method.genError(ERROR_CODE.UNKNOWN_ERROR);
+        return;
+    }
+
+    ctx.response.body = { pid: pid }
+    await next();
+}
 RouterMgr.prototype.nextArea = async function (ctx, next) {
     let param = ctx.request.body;
     let aid = param.aid;
