@@ -357,27 +357,37 @@
               "type": "int32",
               "id": 7
             },
-            "phone": {
-              "type": "string",
+            "vipLv": {
+              "rule": "required",
+              "type": "int32",
               "id": 8
             },
-            "createTime": {
+            "vipExp": {
               "rule": "required",
               "type": "int32",
               "id": 9
             },
+            "phone": {
+              "type": "string",
+              "id": 10
+            },
+            "createTime": {
+              "rule": "required",
+              "type": "int32",
+              "id": 11
+            },
             "loginTime": {
               "type": "int32",
-              "id": 10
+              "id": 12
             },
             "logoutTime": {
               "type": "int32",
-              "id": 11
+              "id": 13
             },
             "online": {
               "rule": "required",
               "type": "int32",
-              "id": 12
+              "id": 14
             }
           }
         },

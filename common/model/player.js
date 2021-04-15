@@ -8,7 +8,7 @@ function Player(pid) {
     this.clsName = "Player"
     this.db_table = 'player_info';
     this.db_idxField = 'pid';
-    this.db_fields = ["pid", 'uid', 'aid', "avatarid", 'name', 'lv', 'exp', "phone", "createTime", "loginTime", "logoutTime", "online"];
+    this.db_fields = ["pid", 'uid', 'aid', "avatarid", 'name', 'lv', 'exp', 'vipLv', 'vipExp', "phone", "createTime", "loginTime", "logoutTime", "online"];
 }
 Player.create = async function (pid, idx) {
     let model = new Player(pid);
