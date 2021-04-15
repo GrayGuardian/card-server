@@ -28,12 +28,12 @@
               "type": "common.UserInfo",
               "id": 2
             },
-            "area": {
+            "areaInfo": {
               "rule": "required",
               "type": "common.AreaInfo",
               "id": 3
             },
-            "areas": {
+            "areaInfos": {
               "rule": "repeated",
               "type": "common.AreaInfo",
               "id": 4

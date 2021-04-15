@@ -10,18 +10,18 @@ RouterMgr.prototype.login = async function (ctx, next) {
         ctx.method.genError(user.code);
         return;
     }
-    let areas = await logic_mgr.getAreaInfoList();
-    let area = areas[0];
+    let areaInfos = await logic_mgr.getAreaInfoList();
+    let areaInfo = areaInfos[0];
     if (user.lastAid != null) {
-        areas.forEach(element => {
+        areaInfos.forEach(element => {
             if (user.lastAid == element.aid)
-                area = element;
+                areaInfo = element;
         });
     }
     let data = { info: user };
     data.token = util.token.encrypt({ uid: user.uid });
-    data.areas = areas;
-    data.area = area;
+    data.areaInfos = areaInfos;
+    data.areaInfo = areaInfo;
     ctx.response.body = data;
     await next();
 }
