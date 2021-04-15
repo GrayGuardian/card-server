@@ -45,8 +45,38 @@ RouterMgr.prototype.register = async function (ctx, next) {
     await next();
 }
 RouterMgr.prototype.createPlayer = async function (ctx, next) {
-
-
+    let param = ctx.request.body;
+    let name = param.name;
+    let avatarid = param.avatarid;
+    let uid = ctx.user.uid;
+    let aid = ctx.user.aid;
+    if (uid == null) {
+        ctx.method.genError(ERROR_CODE.TOKEN_ERROR);
+        return;
+    }
+    if (aid == null) {
+        ctx.method.genError(ERROR_CODE.TOKEN_ERROR);
+        return;
+    }
+    if (await logic_mgr.getPlayerSum(uid, aid) >= GAME_CONFIG.MAX_PLAYER_SUM) {
+        ctx.method.genError(ERROR_CODE.PLAYER_SUM_MAX);
+        return;
+    }
+    if (!REGULAR_CODE.GAMENAME_VALID.test(name)) {
+        ctx.method.genError(ERROR_CODE.GAMENAME_NOTVALID);
+        return;
+    }
+    if (await logic_mgr.isGameNameExist(aid, name)) {
+        ctx.method.genError(ERROR_CODE.GAMENAME_EXIST);
+        return;
+    }
+    let rows = await mysql.callAsync('CALL create_player(?,?,?,?,?)', [uid, aid, avatarid, name, Date.unix()]);
+    if (rows.length <= 0) {
+        ctx.method.genError(ERROR_CODE.CONNECT_ERROR_DATA);
+        return;
+    }
+    ctx.response.body = { info: rows[0] }
+    await next();
 }
 RouterMgr.prototype.delPlayer = async function (ctx, next) {
     let param = ctx.request.body;
@@ -55,16 +85,20 @@ RouterMgr.prototype.delPlayer = async function (ctx, next) {
     let rows = await mysql.queryAsync('UPDATE player_info SET type = 1,delTime = ? WHERE pid = ? AND type = 0', [Date.unix(), pid]);
 
     if (rows.length <= 0) {
-        ctx.method.genError(ERROR_CODE.UNKNOWN_ERROR);
+        ctx.method.genError(ERROR_CODE.CONNECT_ERROR_DATA);
         return;
     }
-
     ctx.response.body = { pid: pid }
     await next();
 }
 RouterMgr.prototype.nextArea = async function (ctx, next) {
     let param = ctx.request.body;
     let aid = param.aid;
+    let uid = ctx.user.uid;
+    if (uid == null) {
+        ctx.method.genError(ERROR_CODE.TOKEN_ERROR);
+        return;
+    }
     let areaInfo = await logic_mgr.getAreaInfo(aid);
     if (areaInfo == null) {
         ctx.method.genError(ERROR_CODE.AREA_NOTEXIST);
@@ -74,25 +108,30 @@ RouterMgr.prototype.nextArea = async function (ctx, next) {
         ctx.method.genError(ERROR_CODE.AREA_MAINTENANCE);
         return;
     }
-    let rows = await mysql.queryAsync('SELECT * FROM player_info WHERE aid = ? AND uid = ? AND type = 0', [aid, ctx.user.uid]);
+    let rows = await mysql.queryAsync('SELECT * FROM player_info WHERE aid = ? AND uid = ? AND type = 0', [aid, uid]);
 
     let players = JSON.parse(JSON.stringify(rows));
 
-    let token = util.token.encrypt({ uid: ctx.user.uid, aid: aid });
+    let token = util.token.encrypt({ uid: uid, aid: aid });
     ctx.response.body = { token: token, players: players };
     await next();
 }
 RouterMgr.prototype.enterGame = async function (ctx, next) {
     let param = ctx.request.body;
     let pid = param.pid;
+    let uid = ctx.user.uid;
     let aid = ctx.user.aid;
+    if (uid == null) {
+        ctx.method.genError(ERROR_CODE.TOKEN_ERROR);
+        return;
+    }
     if (aid == null) {
         ctx.method.genError(ERROR_CODE.TOKEN_ERROR);
         return;
     }
-    let config = server_config.getConnectServerConfigByAID(ctx.user.aid);
+    let config = server_config.getConnectServerConfigByAID(aid);
 
-    let token = util.token.encrypt({ uid: ctx.user.uid, aid: aid, pid: pid });
+    let token = util.token.encrypt({ uid: uid, aid: aid, pid: pid });
 
     ctx.response.body = { token: token, url: `${config.ip}:${config.port}` };
     await next();

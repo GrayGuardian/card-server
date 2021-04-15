@@ -30,7 +30,7 @@ message createPlayer {
     required int32 avatarid = 2;
 }
 message createPlayerRet { 
-    repeated common.PlayerInfo info = 1;
+    required common.PlayerInfo info = 1;
 }
 message delPlayer {
     required int32 pid = 1;

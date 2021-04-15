@@ -1,6 +1,16 @@
 
 var Logic = function () { };
-
+Logic.prototype.getPlayerSum = async function (uid, aid) {
+    let rows = await mysql.queryAsync('SELECT name FROM player_info WHERE type = 0 AND uid = ? AND aid = ?', [uid, aid]);
+    return rows.length;
+}
+Logic.prototype.isGameNameExist = async function (aid, name) {
+    let rows = await mysql.queryAsync('SELECT name FROM player_info WHERE aid = ? AND name = ?', [aid, name]);
+    if (rows.length > 0) {
+        return true;
+    }
+    return false;
+}
 Logic.prototype.isUserExist = async function (username) {
     let rows = await mysql.queryAsync('SELECT username FROM user_info WHERE username = ?', username);
     if (rows.length > 0) {
@@ -43,6 +53,8 @@ Logic.prototype.getAreaInfo = async function (aid) {
     }
     return null;
 }
+
+
 
 
 module.exports = function () { return new Logic(); };

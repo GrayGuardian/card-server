@@ -99,7 +99,7 @@
         "createPlayerRet": {
           "fields": {
             "info": {
-              "rule": "repeated",
+              "rule": "required",
               "type": "common.PlayerInfo",
               "id": 1
             }

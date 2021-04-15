@@ -21,6 +21,7 @@ global.util = require('./util/util');
 global.mysql = require('./db/mysql')();
 global.redis = require('./db/redis')();
 
+global.GAME_CONFIG = require("./const/GAME_CONFIG");
 const ERROR_INFO = require('./const/ERROR_INFO');
 global.SUCCESS_CODE = ERROR_INFO.SUCCESS_CODE;
 global.ERROR_CODE = ERROR_INFO.ERROR_CODE;
