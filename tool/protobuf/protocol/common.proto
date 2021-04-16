@@ -25,11 +25,15 @@ message PlayerInfo {
     required int32 exp = 7;
     required int32 vipLv = 8;
     required int32 vipExp = 9;
-    optional string phone = 10;
-    required int32 createTime = 11;
-    optional int32 loginTime = 12;
-    optional int32 logoutTime = 13;
-    required int32 online = 14;
+    required int32 vitValue = 10;
+    required int32 vitMax = 11;
+    required int32 vigValue = 12;
+    required int32 vigMax = 13;
+    optional string phone = 14;
+    required int32 createTime = 15;
+    optional int32 loginTime = 16;
+    optional int32 logoutTime = 17;
+    required int32 online = 18;
 }
 message PlayerCurrencyInfo {
     required int32 pid = 1;

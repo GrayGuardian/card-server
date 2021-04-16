@@ -210,27 +210,47 @@
               "type": "int32",
               "id": 9
             },
-            "phone": {
-              "type": "string",
+            "vitValue": {
+              "rule": "required",
+              "type": "int32",
               "id": 10
             },
-            "createTime": {
+            "vitMax": {
               "rule": "required",
               "type": "int32",
               "id": 11
             },
-            "loginTime": {
+            "vigValue": {
+              "rule": "required",
               "type": "int32",
               "id": 12
             },
-            "logoutTime": {
+            "vigMax": {
+              "rule": "required",
               "type": "int32",
               "id": 13
+            },
+            "phone": {
+              "type": "string",
+              "id": 14
+            },
+            "createTime": {
+              "rule": "required",
+              "type": "int32",
+              "id": 15
+            },
+            "loginTime": {
+              "type": "int32",
+              "id": 16
+            },
+            "logoutTime": {
+              "type": "int32",
+              "id": 17
             },
             "online": {
               "rule": "required",
               "type": "int32",
-              "id": 14
+              "id": 18
             }
           }
         },
