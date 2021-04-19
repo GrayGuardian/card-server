@@ -41,3 +41,9 @@ message PlayerCurrencyInfo {
     required int32 gold2 = 3;
     required int32 gold3 = 4; 
 }
+message CardInfo {
+    required int32 cid = 1;
+    required int32 pid = 2;
+    required int32 tid = 3;
+    required int32 lv = 4;
+}

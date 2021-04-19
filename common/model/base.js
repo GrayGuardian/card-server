@@ -32,7 +32,7 @@ Base.prototype.init = async function (idx) {
 }
 //从数据库更新缓存数据
 Base.prototype.upDBToData = async function (refresh) {
-    //console.log(`[Model]${this.clsName} 从数据库更新缓存数据`)
+    // console.log(`[Model]${this.clsName} 从数据库更新缓存数据`)
     let sql = `SELECT ${this.db_fields.toString()} FROM ${this.db_table} WHERE ${this.db_idxField}=?;`
     //console.log(sql, this.idx)
     //操作数据库

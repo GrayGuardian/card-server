@@ -434,6 +434,30 @@
               "id": 4
             }
           }
+        },
+        "CardInfo": {
+          "fields": {
+            "cid": {
+              "rule": "required",
+              "type": "int32",
+              "id": 1
+            },
+            "pid": {
+              "rule": "required",
+              "type": "int32",
+              "id": 2
+            },
+            "tid": {
+              "rule": "required",
+              "type": "int32",
+              "id": 3
+            },
+            "lv": {
+              "rule": "required",
+              "type": "int32",
+              "id": 4
+            }
+          }
         }
       }
     },
@@ -486,6 +510,10 @@
             "PlayerCurrency": {
               "type": "common.PlayerCurrencyInfo",
               "id": 11
+            },
+            "Card": {
+              "type": "common.CardInfo",
+              "id": 12
             }
           }
         },

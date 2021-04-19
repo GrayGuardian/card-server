@@ -19,7 +19,7 @@ let getMap = function (name, key) {
     return map;
 }
 
-let template_card = getMap('template_card', "id");
+let template_card = getMap('template_card', "tid");
 
 Template.template_card = template_card;
 
