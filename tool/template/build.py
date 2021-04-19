@@ -13,9 +13,7 @@ xlsfile = os.getcwd()+"\\template.xlsx" # 打开指定路径中的xls文件
 book = xlrd.open_workbook(xlsfile)#得到Excel文件的book对象，实例化对象
 
 config = [
-	# {"name":"role","sheet":"角色表"},
-	# {"name":"mount","sheet":"坐骑表"},
-	# {"name":"map","sheet":"地图表"},
+	{"name":"card","sheet":"卡牌表"},
 ];
 
 

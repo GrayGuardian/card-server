@@ -19,12 +19,8 @@ let getMap = function (name, key) {
     return map;
 }
 
-// let template_role = getMap('template_role', "id");
-// let template_mount = getMap('template_mount', "id");
-// let template_map = getMap('template_map', "id");
+let template_card = getMap('template_card', "id");
 
-// Template.template_role = template_role;
-// Template.template_mount = template_mount;
-// Template.template_map = template_map;
+Template.template_card = template_card;
 
 module.exports = Template;
