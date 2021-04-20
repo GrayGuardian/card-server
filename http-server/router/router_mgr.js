@@ -70,7 +70,7 @@ RouterMgr.prototype.createPlayer = async function (ctx, next) {
         ctx.method.genError(ERROR_CODE.GAMENAME_EXIST);
         return;
     }
-    let rows = await mysql.callAsync('CALL create_player(?,?,?,?,?)', [uid, aid, avatarid, name, Date.unix()]);
+    let rows = await mysql.callAsync('CALL create_player(?,?,?,?,?,?,?,?,?,?,?,?,?,?)', GAME_CONFIG.GET_CREATE_PLAYER_DATA(uid, aid, avatarid, name, Date.unix()));
     if (rows.length <= 0) {
         ctx.method.genError(ERROR_CODE.CONNECT_ERROR_DATA);
         return;
