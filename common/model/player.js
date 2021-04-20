@@ -39,10 +39,19 @@ Player.prototype.loadDataed = async function () {
     // 人物货币
     this.currency.loadData();
     // 卡牌
-    this.cardMap.forEach(card => {
-        card.loadData();
-    });
+    for (var key in this.cardMap) {
+        this.cardMap[key].loadData();
+    }
 }
+// 同步所有数据至客户端
+Player.prototype.upAllClientData = function () {
+    this.upClientData();
+    this.currency.upClientData();
+    for (var key in this.cardMap) {
+        this.cardMap[key].upClientData();
+    }
+}
+
 // 获得下级所需经验
 Player.prototype.getNextLvExp = function (lv) {
     lv = lv == null ? this.get_lv() : lv;

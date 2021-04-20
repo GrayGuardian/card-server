@@ -7,8 +7,7 @@ RouterMgr.prototype.enterGame = async function (ctx, player, data) {
     player.set_online(1)
     await player.upDataToDB();
 
-    player.upClientData();
-    player.currency.upClientData();
+    player.upAllClientData();
 
     await ctx.method.callback({});
 }

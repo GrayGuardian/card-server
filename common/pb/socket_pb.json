@@ -37,10 +37,15 @@
         },
         "upModelData": {
           "fields": {
-            "name": {
+            "clsName": {
               "rule": "required",
               "type": "string",
               "id": 1
+            },
+            "idx": {
+              "rule": "required",
+              "type": "int32",
+              "id": 2
             },
             "Player": {
               "type": "common.PlayerInfo",

@@ -16,7 +16,8 @@ message heartBeatRet {
 }
 
 message upModelData {
-    required string name = 1;
+    required string clsName = 1;
+    required int32 idx = 2;
 
     optional common.PlayerInfo Player = 10;
     optional common.PlayerCurrencyInfo PlayerCurrency = 11;

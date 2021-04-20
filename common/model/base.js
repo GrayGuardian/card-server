@@ -100,10 +100,11 @@ Base.prototype.upClientData = async function () {
     let router = `upModelData`;
     let config = server_config.getConnectServerConfigByAID(this.aid);
     let data = {};
-    data.name = this.clsName;
+    data.clsName = this.clsName;
+    data.idx = this.idx;
     data[this.clsName] = this.baseInfo;
 
-    //console.log(`[Model]${this.clsName} 更新数据到客户端 router:`, router, "data:", data);
+    console.log(`[Model]${this.clsName} 更新数据到客户端 router:`, router, "data:", data);
 
     await rpc_mgr.socketChannelOper(config.name, "send", [`pid=${this.pid}`, router, data]);
 }
