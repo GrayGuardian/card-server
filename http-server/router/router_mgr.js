@@ -110,6 +110,8 @@ RouterMgr.prototype.nextArea = async function (ctx, next) {
     }
     let rows = await mysql.queryAsync('SELECT * FROM player_info WHERE aid = ? AND uid = ? AND type = 0', [aid, uid]);
 
+    await mysql.queryAsync('UPDATE user_info SET lastAid=? WHERE uid=?', [aid, uid]);
+
     let players = JSON.parse(JSON.stringify(rows));
 
     let token = util.token.encrypt({ uid: uid, aid: aid });
