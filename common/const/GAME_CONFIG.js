@@ -38,7 +38,9 @@ GAME_CONFIG.GET_CREATE_PLAYER_DATA = function (uid, aid, avatarid, name, time) {
 }
 
 // ------------ 客户端需同步 ------------
-// 最大角色栏位数量
+// 角色栏位最大数量
 GAME_CONFIG.MAX_PLAYER_SUM = 3
+// 卡牌强化最大等级
+GAME_CONFIG.MAX_CARD_LV = 109;
 
 module.exports = GAME_CONFIG;

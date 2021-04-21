@@ -46,4 +46,15 @@ message CardInfo {
     required int32 pid = 2;
     required int32 tid = 3;
     required int32 lv = 4;
+    repeated SkillHole skillHoles = 5;
+    repeated SkillLink skillLinks = 6;
+}
+message SkillHole {
+    required int32 idx = 1;
+    required string color = 2;
+    required int32 skid = 3;
+}
+message SkillLink {
+    required int32 idx = 1;
+    repeated int32 holeIdxs = 2;
 }

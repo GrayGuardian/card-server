@@ -45,14 +45,8 @@ Base.prototype.upDBToData = async function (refresh) {
     let row = rows[0];
     let data = {};
     this.db_fields.forEach((field) => {
-        let value = row[field];
-        if (Buffer.isBuffer(value)) {
-            value = JSON.parse(value.toString("utf8"));
-        }
-        data[field] = value;
-        //console.log(field, value)
+        data[field] = row[field];
     });
-
     //写到缓存内
     await this.loadData(data, true);
 
@@ -118,6 +112,9 @@ Base.prototype.loadData = async function (data, flag) {
         this.baseInfo = data;
     }
     for (const key in this.baseInfo) {
+        if (Buffer.isBuffer(this.baseInfo[key])) {
+            this.baseInfo[key] = JSON.parse(this.baseInfo[key].toString("utf8"));
+        }
         this[`get_${key}`] = () => {
             return this.baseInfo[key];
         };

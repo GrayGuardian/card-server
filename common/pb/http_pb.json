@@ -417,6 +417,52 @@
               "rule": "required",
               "type": "int32",
               "id": 4
+            },
+            "skillHoles": {
+              "rule": "repeated",
+              "type": "SkillHole",
+              "id": 5
+            },
+            "skillLinks": {
+              "rule": "repeated",
+              "type": "SkillLink",
+              "id": 6
+            }
+          }
+        },
+        "SkillHole": {
+          "fields": {
+            "idx": {
+              "rule": "required",
+              "type": "int32",
+              "id": 1
+            },
+            "color": {
+              "rule": "required",
+              "type": "string",
+              "id": 2
+            },
+            "skid": {
+              "rule": "required",
+              "type": "int32",
+              "id": 3
+            }
+          }
+        },
+        "SkillLink": {
+          "fields": {
+            "idx": {
+              "rule": "required",
+              "type": "int32",
+              "id": 1
+            },
+            "holeIdxs": {
+              "rule": "repeated",
+              "type": "int32",
+              "id": 2,
+              "options": {
+                "packed": false
+              }
             }
           }
         }

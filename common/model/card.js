@@ -8,7 +8,7 @@ function Card(pid) {
     this.clsName = "Card"
     this.db_table = 'card_info';
     this.db_idxField = 'cid';
-    this.db_fields = ["cid", "pid", "tid", "lv"];
+    this.db_fields = ["cid", "pid", "tid", "lv", "skillHoles"];
 }
 Card.create = async function (pid, idx) {
     let model = new Card(pid);
@@ -16,7 +16,6 @@ Card.create = async function (pid, idx) {
     return model;
 }
 Card.prototype.inited = async function () {
-
 }
 Card.prototype.loadDataed = async function () {
 

@@ -14,6 +14,7 @@ book = xlrd.open_workbook(xlsfile)#得到Excel文件的book对象，实例化对
 
 config = [
 	{"name":"card","sheet":"卡牌表"},
+	{"name":"skill_gem","sheet":"技能宝石表"}
 ];
 
 
