@@ -21,4 +21,13 @@ Card.prototype.inited = async function () {
 Card.prototype.loadDataed = async function () {
 
 }
+// 获取强化等级
+Card.prototype.getEnchLv = async function () {
+    return this.get_lv() % 10
+}
+// 获取进阶等级
+Card.prototype.getAdvLv = async function () {
+    return Math.floor(this.get_lv() / 10)
+}
+
 module.exports = Card
