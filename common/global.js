@@ -35,3 +35,4 @@ global.rpc_mgr = require('./rpc/rpc_mgr')();
 global.Player = require('./model/player');
 global.PlayerCurrency = require('./model/player_currency');
 global.Card = require("./model/card");
+global.SkillGem = require("./model/skillgem");

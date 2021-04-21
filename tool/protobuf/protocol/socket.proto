@@ -22,6 +22,7 @@ message upModelData {
     optional common.PlayerInfo Player = 10;
     optional common.PlayerCurrencyInfo PlayerCurrency = 11;
     optional common.CardInfo Card = 12;
+    optional common.SkillGemInfo SkillGem = 13;
 }
 
 message enterGame { }

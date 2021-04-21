@@ -20,6 +20,7 @@ Player.create = async function (pid, idx) {
 Player.prototype.inited = async function () {
     this.currency = null;
     this.cardMap = {};
+    this.skillGemMap = {};
 
     // 人物货币
     this.currency = await PlayerCurrency.create(this.pid, this.idx)
@@ -33,7 +34,15 @@ Player.prototype.inited = async function () {
         // console.log("卡牌>>>", model.baseInfo);
         this.cardMap[info.cid] = model;
     }
-
+    // 技能宝石
+    let skillGemInfos = await mysql.queryAsync("SELECT * FROM skillgem_info WHERE pid = ?", [this.pid]);
+    for (let index = 0; index < skillGemInfos.length; index++) {
+        const info = skillGemInfos[index];
+        let model = new SkillGem(this.pid);
+        model.loadData(info);
+        await model.init(info.skid);
+        this.skillGemMap[info.skid] = model;
+    }
 }
 Player.prototype.loadDataed = async function () {
     // 人物货币
@@ -42,6 +51,10 @@ Player.prototype.loadDataed = async function () {
     for (var key in this.cardMap) {
         this.cardMap[key].loadData();
     }
+    // 技能宝石
+    for (var key in this.skillGemMap) {
+        this.skillGemMap[key].loadData();
+    }
 }
 // 同步所有数据至客户端
 Player.prototype.upAllClientData = function () {
@@ -49,6 +62,9 @@ Player.prototype.upAllClientData = function () {
     this.currency.upClientData();
     for (var key in this.cardMap) {
         this.cardMap[key].upClientData();
+    }
+    for (var key in this.skillGemMap) {
+        this.skillGemMap[key].upClientData();
     }
 }
 

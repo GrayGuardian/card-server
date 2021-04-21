@@ -465,6 +465,30 @@
               }
             }
           }
+        },
+        "SkillGemInfo": {
+          "fields": {
+            "skid": {
+              "rule": "required",
+              "type": "int32",
+              "id": 1
+            },
+            "pid": {
+              "rule": "required",
+              "type": "int32",
+              "id": 2
+            },
+            "tid": {
+              "rule": "required",
+              "type": "int32",
+              "id": 3
+            },
+            "color": {
+              "rule": "required",
+              "type": "string",
+              "id": 4
+            }
+          }
         }
       }
     }

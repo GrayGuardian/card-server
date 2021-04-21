@@ -58,3 +58,9 @@ message SkillLink {
     required int32 idx = 1;
     repeated int32 holeIdxs = 2;
 }
+message SkillGemInfo {
+    required int32 skid = 1;
+    required int32 pid = 2;
+    required int32 tid = 3;
+    required string color = 4; 
+}
