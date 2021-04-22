@@ -2,6 +2,15 @@ const Base = require('./base');
 
 Base.inherits(this, Player, Base);
 
+const PlayerCurrency = require('./player_currency');
+const Card = require("./card");
+const SkillGem = require("./skillgem");
+const TAB = [
+    { name: "currency", cls: PlayerCurrency, isArray: false },
+    { name: "card", cls: Card, isArray: true },
+    { name: "skillGem", cls: SkillGem, isArray: true }
+]
+
 function Player(pid) {
     this.pid = pid;
 
@@ -18,53 +27,63 @@ Player.create = async function (pid, idx) {
     return model;
 }
 Player.prototype.inited = async function () {
-    this.currency = null;
-    this.cardMap = {};
-    this.skillGemMap = {};
+    for (const key in TAB) {
+        const info = TAB[key];
+        let model = new info.cls(this.pid);
+        let rows = await mysql.queryAsync(`SELECT * FROM ${model.db_table} WHERE pid = ?`, [this.pid]);
+        if (info.isArray) {
+            this[`${info.name}Map`] = {};
+            for (const index in rows) {
+                const row = rows[index];
+                model = new info.cls(this.pid);
+                model.loadData(row);
+                await model.init(row[model.db_idxField]);
+                this[`${info.name}Map`][row[model.db_idxField]] = model;
+            }
+        }
+        else {
+            if (rows.length > 0) {
+                model.loadData(rows[0]);
+                await model.init(rows[0][model.db_idxField]);
+                this[info.name] = model;
+            }
+            else {
+                // 不存在数据
+            }
+        }
+    }
 
-    // 人物货币
-    this.currency = await PlayerCurrency.create(this.pid, this.idx)
-    // 卡牌
-    let cardInfos = await mysql.queryAsync("SELECT * FROM card_info WHERE pid = ?", [this.pid]);
-    for (let index = 0; index < cardInfos.length; index++) {
-        const info = cardInfos[index];
-        let model = new Card(this.pid);
-        model.loadData(info);
-        await model.init(info.cid);
-        // console.log("卡牌>>>", model.baseInfo);
-        this.cardMap[info.cid] = model;
-    }
-    // 技能宝石
-    let skillGemInfos = await mysql.queryAsync("SELECT * FROM skillgem_info WHERE pid = ?", [this.pid]);
-    for (let index = 0; index < skillGemInfos.length; index++) {
-        const info = skillGemInfos[index];
-        let model = new SkillGem(this.pid);
-        model.loadData(info);
-        await model.init(info.skid);
-        this.skillGemMap[info.skid] = model;
-    }
 }
 Player.prototype.loadDataed = async function () {
-    // 人物货币
-    this.currency.loadData();
-    // 卡牌
-    for (var key in this.cardMap) {
-        this.cardMap[key].loadData();
-    }
-    // 技能宝石
-    for (var key in this.skillGemMap) {
-        this.skillGemMap[key].loadData();
+    for (const key in TAB) {
+        const info = TAB[key];
+        if (info.isArray) {
+            for (var idx in this[`${info.name}Map`]) {
+                this[`${info.name}Map`][idx].loadData();
+            }
+        }
+        else {
+            if (this[info.name] != null) {
+                this[info.name].loadData();
+            }
+        }
     }
 }
 // 同步所有数据至客户端
 Player.prototype.upAllClientData = function () {
     this.upClientData();
-    this.currency.upClientData();
-    for (var key in this.cardMap) {
-        this.cardMap[key].upClientData();
-    }
-    for (var key in this.skillGemMap) {
-        this.skillGemMap[key].upClientData();
+    for (const key in TAB) {
+        const info = TAB[key];
+        if (info.isArray) {
+            for (var idx in this[`${info.name}Map`]) {
+                this[`${info.name}Map`][idx].upClientData();
+            }
+        }
+        else {
+            if (this[info.name] != null) {
+                this[info.name].upClientData();
+            }
+        }
     }
 }
 
