@@ -34,7 +34,6 @@ module.exports = function (prototype) {
         }
     }
     prototype.disconnect = async function (ctx) {
-        //console.log("disconnect");
         let player = await rpc_mgr.getPlayer(ctx.socket.pid);
 
         player.set_logoutTime(Date.unix())
