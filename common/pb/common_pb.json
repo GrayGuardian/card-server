@@ -209,11 +209,6 @@
               "rule": "required",
               "type": "string",
               "id": 2
-            },
-            "skid": {
-              "rule": "required",
-              "type": "int32",
-              "id": 3
             }
           }
         },
@@ -255,6 +250,32 @@
               "rule": "required",
               "type": "string",
               "id": 4
+            },
+            "inlay": {
+              "type": "SkillInlay",
+              "id": 5
+            },
+            "tttt": {
+              "rule": "repeated",
+              "type": "int32",
+              "id": 6,
+              "options": {
+                "packed": false
+              }
+            }
+          }
+        },
+        "SkillInlay": {
+          "fields": {
+            "cid": {
+              "rule": "required",
+              "type": "int32",
+              "id": 1
+            },
+            "holeIdx": {
+              "rule": "required",
+              "type": "int32",
+              "id": 2
             }
           }
         }

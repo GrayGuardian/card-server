@@ -8,7 +8,7 @@ function SkillGem(pid) {
     this.clsName = "SkillGem"
     this.db_table = 'skillgem_info';
     this.db_idxField = 'skid';
-    this.db_fields = ["skid", "pid", "tid", "color"];
+    this.db_fields = ["skid", "pid", "tid", "color", "inlay"];
 }
 SkillGem.create = async function (pid, idx) {
     let model = new SkillGem(pid);
@@ -16,6 +16,7 @@ SkillGem.create = async function (pid, idx) {
     return model;
 }
 SkillGem.prototype.inited = async function () {
+
 }
 SkillGem.prototype.loadDataed = async function () {
 

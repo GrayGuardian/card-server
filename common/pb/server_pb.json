@@ -480,11 +480,6 @@
               "rule": "required",
               "type": "string",
               "id": 2
-            },
-            "skid": {
-              "rule": "required",
-              "type": "int32",
-              "id": 3
             }
           }
         },
@@ -526,6 +521,32 @@
               "rule": "required",
               "type": "string",
               "id": 4
+            },
+            "inlay": {
+              "type": "SkillInlay",
+              "id": 5
+            },
+            "tttt": {
+              "rule": "repeated",
+              "type": "int32",
+              "id": 6,
+              "options": {
+                "packed": false
+              }
+            }
+          }
+        },
+        "SkillInlay": {
+          "fields": {
+            "cid": {
+              "rule": "required",
+              "type": "int32",
+              "id": 1
+            },
+            "holeIdx": {
+              "rule": "required",
+              "type": "int32",
+              "id": 2
             }
           }
         }
@@ -602,12 +623,28 @@
         "enterGameRet": {
           "fields": {}
         },
+        "test": {
+          "fields": {
+            "info": {
+              "rule": "required",
+              "type": "common.SkillGemInfo",
+              "id": 1
+            }
+          }
+        },
+        "testRet": {
+          "fields": {}
+        },
         "c2s": {
           "fields": {
             "router": {
               "rule": "required",
               "type": "string",
               "id": 1
+            },
+            "test": {
+              "type": "test",
+              "id": 10
             },
             "conn": {
               "type": "conn",
@@ -629,6 +666,10 @@
               "rule": "required",
               "type": "string",
               "id": 1
+            },
+            "testRet": {
+              "type": "testRet",
+              "id": 10
             },
             "error": {
               "type": "common.Error",

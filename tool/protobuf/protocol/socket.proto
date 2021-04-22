@@ -28,8 +28,16 @@ message upModelData {
 message enterGame { }
 message enterGameRet { }
 
+message test {
+    required common.SkillGemInfo info = 1;
+}
+message testRet {
+}
+
 message c2s {
     required string router = 1;
+
+    optional test test = 10;
 
     optional conn conn = 100;
     optional heartBeat heartBeat = 101;
@@ -39,6 +47,8 @@ message c2s {
 
 message s2c {
     required string router = 1;
+
+    optional testRet testRet = 10;
 
     optional common.Error error = 50;
     optional kick kick = 51;
