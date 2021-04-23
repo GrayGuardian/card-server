@@ -401,14 +401,6 @@
             "inlay": {
               "type": "SkillInlay",
               "id": 5
-            },
-            "tttt": {
-              "rule": "repeated",
-              "type": "int32",
-              "id": 6,
-              "options": {
-                "packed": false
-              }
             }
           }
         },
