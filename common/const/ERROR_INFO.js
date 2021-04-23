@@ -35,6 +35,7 @@ const ERROR_CODE = {
     GAMENAME_EXIST: genLogicCode(),
     GAMENAME_NOTVALID: genLogicCode(),
     PLAYER_SUM_MAX: genLogicCode(),
+    PLAYER_NOTEXIST: genLogicCode(),
 }
 
 const ERROR_MSG = {
@@ -62,6 +63,7 @@ const ERROR_MSG = {
     [ERROR_CODE.GAMENAME_EXIST]: '游戏名已存在',
     [ERROR_CODE.GAMENAME_NOTVALID]: '游戏名格式错误：2-6位的汉字、大小写字母、数字',
     [ERROR_CODE.PLAYER_SUM_MAX]: '账号内游戏角色已到达上限',
+    [ERROR_CODE.PLAYER_NOTEXIST]: "游戏角色不存在",
 }
 const genErrorMsg = function (code) {
     let data = {};

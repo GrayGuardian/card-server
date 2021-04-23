@@ -58,33 +58,19 @@ RouterMgr.prototype.createPlayer = async function (ctx, next) {
         ctx.method.genError(ERROR_CODE.TOKEN_ERROR);
         return;
     }
-    if (await logic_mgr.getPlayerSum(uid, aid) >= GAME_CONFIG.MAX_PLAYER_SUM) {
-        ctx.method.genError(ERROR_CODE.PLAYER_SUM_MAX);
+    let player = await logic_mgr.createPlayer(aid, uid, avatarid, name);
+    if (player.code > SUCCESS_CODE) {
+        ctx.method.genError(player.code);
         return;
     }
-    if (!REGULAR_CODE.GAMENAME_VALID.test(name)) {
-        ctx.method.genError(ERROR_CODE.GAMENAME_NOTVALID);
-        return;
-    }
-    if (await logic_mgr.isGameNameExist(aid, name)) {
-        ctx.method.genError(ERROR_CODE.GAMENAME_EXIST);
-        return;
-    }
-    let rows = await mysql.callAsync('CALL create_player(?,?,?,?,?,?,?,?,?,?,?,?,?,?)', GAME_CONFIG.GET_CREATE_PLAYER_DATA(uid, aid, avatarid, name, Date.unix()));
-    if (rows.length <= 0) {
-        ctx.method.genError(ERROR_CODE.CONNECT_ERROR_DATA);
-        return;
-    }
-    ctx.response.body = { info: rows[0] }
+    ctx.response.body = { info: player }
     await next();
 }
 RouterMgr.prototype.delPlayer = async function (ctx, next) {
     let param = ctx.request.body;
     let pid = param.pid;
 
-    let rows = await mysql.queryAsync('UPDATE player_info SET type = 1,delTime = ? WHERE pid = ? AND type = 0', [Date.unix(), pid]);
-
-    if (rows.length <= 0) {
+    if (!await logic_mgr.delPlayer(pid)) {
         ctx.method.genError(ERROR_CODE.CONNECT_ERROR_DATA);
         return;
     }
@@ -108,11 +94,10 @@ RouterMgr.prototype.nextArea = async function (ctx, next) {
         ctx.method.genError(ERROR_CODE.AREA_MAINTENANCE);
         return;
     }
-    let rows = await mysql.queryAsync('SELECT * FROM player_info WHERE aid = ? AND uid = ? AND type = 0', [aid, uid]);
 
     await mysql.queryAsync('UPDATE user_info SET lastAid=? WHERE uid=?', [aid, uid]);
 
-    let players = JSON.parse(JSON.stringify(rows));
+    let players = JSON.parse(JSON.stringify(await logic_mgr.getPlayers(aid, uid)));
 
     let token = util.token.encrypt({ uid: uid, aid: aid });
     ctx.response.body = { token: token, players: players };
@@ -129,6 +114,10 @@ RouterMgr.prototype.enterGame = async function (ctx, next) {
     }
     if (aid == null) {
         ctx.method.genError(ERROR_CODE.TOKEN_ERROR);
+        return;
+    }
+    if (!await logic_mgr.isPlayerExist(pid)) {
+        ctx.method.genError(ERROR_CODE.PLAYER_NOTEXIST)
         return;
     }
     let config = server_config.getConnectServerConfigByAID(aid);
