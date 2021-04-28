@@ -48,6 +48,7 @@ message CardInfo {
     required int32 lv = 4;
     repeated SkillHole skillHoles = 5;
     repeated SkillLink skillLinks = 6;
+    optional Squad squad = 7;
 }
 message SkillHole {
     required int32 idx = 1;
@@ -56,6 +57,9 @@ message SkillHole {
 message SkillLink {
     required int32 idx = 1;
     repeated int32 holeIdxs = 2;
+}
+message Squad {
+    required int32 idx = 1;
 }
 message SkillGemInfo {
     required int32 skid = 1;

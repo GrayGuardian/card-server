@@ -427,6 +427,10 @@
               "rule": "repeated",
               "type": "SkillLink",
               "id": 6
+            },
+            "squad": {
+              "type": "Squad",
+              "id": 7
             }
           }
         },
@@ -458,6 +462,15 @@
               "options": {
                 "packed": false
               }
+            }
+          }
+        },
+        "Squad": {
+          "fields": {
+            "idx": {
+              "rule": "required",
+              "type": "int32",
+              "id": 1
             }
           }
         },

@@ -8,7 +8,7 @@ function Card(pid) {
     this.clsName = "Card"
     this.db_table = 'card_info';
     this.db_idxField = 'cid';
-    this.db_fields = ["cid", "pid", "tid", "lv", "skillHoles", "skillLinks"];
+    this.db_fields = ["cid", "pid", "tid", "lv", "skillHoles", "skillLinks", "squad"];
 }
 Card.create = async function (pid, idx) {
     let model = new Card(pid);
