@@ -53,10 +53,11 @@ ServerConfig.prototype.getGameServerConfigByAID = function (aid) {
     let config = list[order];
     return config;
 }
-//根据区服ID与地图ID获取对应得scene-server配置
-ServerConfig.prototype.getSceneServerConfigByAIDAndMID = function (aid, mid) {
-    let list = this.getServerList('scene-server');
-    let order = Math.abs(crc.crc32(aid.toString())) % list.length;
+
+//根据区服ID与地图ID获取对应得combat-server配置
+ServerConfig.prototype.getCombatServerConfigByCOID = function (coid) {
+    let list = this.getServerList('combat-server');
+    let order = Math.abs(crc.crc32(coid.toString())) % list.length;
     let config = list[order];
     return config;
 }

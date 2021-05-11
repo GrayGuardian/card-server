@@ -1,6 +1,6 @@
 @echo off
 ::添加Server配置项并修改长度变量
-SET SERVER_CONFIG_Length=5
+SET SERVER_CONFIG_Length=6
 SET SERVER_CONFIG[0].Type=center-server
 SET SERVER_CONFIG[0].Count=1
 SET SERVER_CONFIG[1].Type=http-server
@@ -11,7 +11,8 @@ SET SERVER_CONFIG[3].Type=game-server
 SET SERVER_CONFIG[3].Count=1
 SET SERVER_CONFIG[4].Type=web-server
 SET SERVER_CONFIG[4].Count=1
-
+SET SERVER_CONFIG[5].Type=combat-server
+SET SERVER_CONFIG[5].Count=1
 
 cd %cd%
 
