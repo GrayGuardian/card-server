@@ -54,7 +54,7 @@ ServerConfig.prototype.getGameServerConfigByAID = function (aid) {
     return config;
 }
 
-//根据区服ID与地图ID获取对应得combat-server配置
+//根据战斗ID获取对应得combat-server配置
 ServerConfig.prototype.getCombatServerConfigByCOID = function (coid) {
     let list = this.getServerList('combat-server');
     let order = Math.abs(crc.crc32(coid.toString())) % list.length;

@@ -1,20 +1,23 @@
 syntax = "proto2";
 
 package common;
-
+// 错误信息
 message Error {
     required int32 code = 1;
     required string msg = 2;
 }
+// 用户信息
 message UserInfo {
     required int32 uid = 1;
     required string username = 2;
 }
+// 服务器信息
 message AreaInfo {
     required int32 aid = 1;
     required string name = 2; 
     required int32 ismaintenance = 3; 
 } 
+// 玩家信息
 message PlayerInfo {
     required int32 pid = 1;
     required int32 uid = 2;
@@ -35,12 +38,14 @@ message PlayerInfo {
     optional int32 logoutTime = 17;
     required int32 online = 18;
 }
+// 玩家货币信息
 message PlayerCurrencyInfo {
     required int32 pid = 1;
     required int32 gold1 = 2;
     required int32 gold2 = 3;
     required int32 gold3 = 4; 
 }
+// 卡牌信息
 message CardInfo {
     required int32 cid = 1;
     required int32 pid = 2;
@@ -50,17 +55,21 @@ message CardInfo {
     repeated SkillLink skillLinks = 6;
     optional Squad squad = 7;
 }
+// 技能空信息
 message SkillHole {
     required int32 idx = 1;
     required string color = 2;
 }
+// 技能链接信息
 message SkillLink {
     required int32 idx = 1;
     repeated int32 holeIdxs = 2;
 }
+// 出战阵容位置信息
 message Squad {
     required int32 idx = 1;
 }
+// 技能宝石信息
 message SkillGemInfo {
     required int32 skid = 1;
     required int32 pid = 2;
@@ -68,7 +77,25 @@ message SkillGemInfo {
     required string color = 4; 
     optional SkillInlay inlay = 5;
 }
+// 技能宝石镶嵌信息
 message SkillInlay {
-    required int32 cid = 1;
+    required int32 cid = 1;                                          
     required int32 holeIdx = 2;
+}
+// 战斗对局信息
+message CombatInfo {
+    required int32 round = 1;
+    required int32 operStartTime = 2;
+    required int32 operEndTime = 3;
+    repeated CombatPlayerInfo myPlayerInfos = 4;
+    repeated CombatPlayerInfo enemyPlayerInfos= 5;
+}
+// 战斗人物信息
+message CombatPlayerInfo {
+    required int32 idx = 1;
+    required int32 cid = 2;
+    required string name = 3;
+    optional int32 hp = 10;
+    optional int32 mp = 11;
+    optional int32 sp = 12;
 }
